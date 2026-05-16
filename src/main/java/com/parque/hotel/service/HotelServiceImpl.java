@@ -1,6 +1,7 @@
 package com.parque.hotel.service;
 
 import com.parque.exception.ResourceNotFoundException;
+import com.parque.exception.ConflictException;
 import com.parque.hotel.dto.HotelCreateRequest;
 import com.parque.hotel.dto.HotelResponse;
 import com.parque.hotel.dto.HotelUpdateRequest;
@@ -42,9 +43,11 @@ public List<HotelResponse> getAll() {
 
     @Override
     public HotelResponse create(HotelCreateRequest request) {
+        validateAvailability(request.availableRooms(), request.totalRooms(), request.availablePlaces(), request.totalPlaces());
         Hotel hotel = Hotel.builder()
                 .name(request.name())
                 .description(request.description())
+                .location(request.location())
                 .totalRooms(request.totalRooms())
                 .availableRooms(request.availableRooms())
                 .totalPlaces(request.totalPlaces())
@@ -60,9 +63,11 @@ public List<HotelResponse> getAll() {
     @Override
     public HotelResponse update(Long id, HotelUpdateRequest request) {
         Hotel hotel = hotelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Hotel not found"));
+        validateAvailability(request.availableRooms(), request.totalRooms(), request.availablePlaces(), request.totalPlaces());
 
         hotel.setName(request.name());
         hotel.setDescription(request.description());
+        hotel.setLocation(request.location());
         hotel.setTotalRooms(request.totalRooms());
         hotel.setAvailableRooms(request.availableRooms());
         hotel.setTotalPlaces(request.totalPlaces());
@@ -87,6 +92,7 @@ public List<HotelResponse> getAll() {
                 hotel.getId(),
                 hotel.getName(),
                 hotel.getDescription(),
+                hotel.getLocation(),
                 hotel.getTotalRooms(),
                 hotel.getAvailableRooms(),
                 hotel.getTotalPlaces(),
@@ -95,6 +101,15 @@ public List<HotelResponse> getAll() {
                 hotel.getFullBoardPrice(),
                 hotel.getImageUrl()
         );
+    }
+
+    private void validateAvailability(Integer availableRooms, Integer totalRooms, Integer availablePlaces, Integer totalPlaces) {
+        if (availableRooms > totalRooms) {
+            throw new ConflictException("Available rooms cannot exceed total rooms");
+        }
+        if (availablePlaces > totalPlaces) {
+            throw new ConflictException("Available places cannot exceed total places");
+        }
     }
 }
 

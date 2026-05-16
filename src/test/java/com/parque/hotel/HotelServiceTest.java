@@ -37,6 +37,7 @@ class HotelServiceTest {
         HotelCreateRequest request = new HotelCreateRequest(
                 "Hotel Magic Park",
                 "Hotel familiar situado junto al parque.",
+                "Granada",
                 120,
                 120,
                 240,
@@ -59,6 +60,7 @@ class HotelServiceTest {
         HotelUpdateRequest request = new HotelUpdateRequest(
                 "Hotel Magic Park Resort",
                 "Hotel familiar situado junto al parque.",
+                "Granada",
                 120,
                 80,
                 240,

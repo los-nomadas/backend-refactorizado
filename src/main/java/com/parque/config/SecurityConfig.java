@@ -52,6 +52,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/users/**").authenticated()
                 .requestMatchers("/api/bookings/**").authenticated()
                 .requestMatchers("/api/hotels/**").authenticated()
+                .requestMatchers("/api/drivers/**").authenticated()
+                .requestMatchers("/api/buses/**").authenticated()
                 .requestMatchers("/api/attractions/**").authenticated()
                 .requestMatchers("/api/employees/**").authenticated()
                 .requestMatchers("/api/offers/**").authenticated()

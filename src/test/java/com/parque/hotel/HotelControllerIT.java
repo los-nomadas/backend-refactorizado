@@ -59,6 +59,7 @@ class HotelControllerIT {
         HotelCreateRequest request = new HotelCreateRequest(
                 "Hotel Magic Park",
                 "Hotel familiar situado junto al parque.",
+                "Granada",
                 120,
                 120,
                 240,
@@ -74,6 +75,7 @@ class HotelControllerIT {
         JsonNode body = objectMapper.readTree(response.getBody());
         assertThat(body.get("id").isNumber()).isTrue();
         assertThat(body.get("name").asText()).isEqualTo("Hotel Magic Park");
+        assertThat(body.get("location").asText()).isEqualTo("Granada");
         assertThat(body.get("totalRooms").asInt()).isEqualTo(120);
         assertThat(body.get("availablePlaces").asInt()).isEqualTo(240);
         assertThat(body.get("imageUrl").asText()).isEqualTo("https://example.com/hotel.jpg");
@@ -84,6 +86,7 @@ class HotelControllerIT {
         HotelCreateRequest request = new HotelCreateRequest(
                 "Hotel Magic Park",
                 "Hotel familiar situado junto al parque.",
+                "Granada",
                 120,
                 120,
                 240,
@@ -109,6 +112,7 @@ class HotelControllerIT {
                 "id",
                 "name",
                 "description",
+                "location",
                 "totalRooms",
                 "availableRooms",
                 "totalPlaces",
@@ -127,6 +131,7 @@ class HotelControllerIT {
         HotelCreateRequest createRequest = new HotelCreateRequest(
                 "Hotel Magic Park",
                 "Hotel familiar situado junto al parque.",
+                "Granada",
                 120,
                 120,
                 240,
@@ -144,6 +149,7 @@ class HotelControllerIT {
         HotelUpdateRequest updateRequest = new HotelUpdateRequest(
                 "Hotel Magic Park Resort",
                 "Hotel familiar situado junto al parque.",
+                "Granada",
                 120,
                 80,
                 240,
@@ -180,6 +186,7 @@ class HotelControllerIT {
                 {
                   "name": "",
                   "description": "",
+                  "location": "",
                   "totalRooms": 0,
                   "availableRooms": -1,
                   "totalPlaces": 0,

@@ -330,6 +330,7 @@ class DashboardControllerIT {
         return hotelRepository.save(Hotel.builder()
                 .name(name)
                 .description(description)
+                .location("Granada")
                 .totalRooms(totalRooms)
                 .availableRooms(totalRooms)
                 .totalPlaces(totalPlaces)

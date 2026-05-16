@@ -203,6 +203,7 @@ class BookingServiceTest {
         return hotelRepository.save(Hotel.builder()
                 .name("Hotel Magic Park")
                 .description("Hotel familiar situado junto al parque.")
+                .location("Granada")
                 .totalRooms(120)
                 .availableRooms(120)
                 .totalPlaces(240)

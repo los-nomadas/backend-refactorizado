@@ -12,6 +12,8 @@ public record HotelCreateRequest(
         String name,
         @NotBlank
         String description,
+        @NotBlank
+        String location,
         @NotNull
         @Positive
         Integer totalRooms,

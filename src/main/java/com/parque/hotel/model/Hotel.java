@@ -31,6 +31,9 @@ public class Hotel {
     @NotBlank
     private String description;
 
+    @NotBlank
+    private String location;
+
     @NotNull
     @Positive
     private Integer totalRooms;
