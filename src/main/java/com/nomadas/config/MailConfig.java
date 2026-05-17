@@ -1,7 +1,6 @@
 package com.nomadas.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,13 +13,12 @@ import java.util.Properties;
 public class MailConfig {
 
     @Bean
-    @ConditionalOnExpression("'${spring.mail.host:}'.trim().length() > 0")
     @ConditionalOnMissingBean(JavaMailSender.class)
     public JavaMailSender javaMailSender(
-            @Value("${spring.mail.host}") String host,
-            @Value("${spring.mail.port}") int port,
-            @Value("${spring.mail.username}") String username,
-            @Value("${spring.mail.password}") String password) {
+            @Value("${spring.mail.host:}") String host,
+            @Value("${spring.mail.port:587}") int port,
+            @Value("${spring.mail.username:}") String username,
+            @Value("${spring.mail.password:}") String password) {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(host);
         mailSender.setPort(port);
