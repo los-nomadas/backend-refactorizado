@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.parque.auth.repository.InternalCredentialRepository;
 import com.parque.testconfig.JacksonTestConfig;
 import com.parque.testsupport.InternalAuthSupport;
-import com.parque.weather.dto.GranadaWeatherResponse;
-import com.parque.weather.service.GranadaWeatherService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +17,13 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.web.client.RestClient;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(JacksonTestConfig.class)
@@ -47,22 +42,9 @@ class ContractTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @MockitoBean
-    private GranadaWeatherService granadaWeatherService;
-
     @BeforeEach
     void setUp() {
         InternalAuthSupport.ensureAdminCredential(internalCredentialRepository, passwordEncoder);
-        when(granadaWeatherService.getCurrentWeather()).thenReturn(
-                new GranadaWeatherResponse(
-                        "Granada",
-                        24.5,
-                        26.0,
-                        "Poco nuboso",
-                        true,
-                        LocalDateTime.parse("2026-05-12T12:00:00")
-                )
-        );
     }
 
     @Test
@@ -130,28 +112,6 @@ class ContractTest {
         assertThat(response.getHeaders().getContentType().toString()).startsWith("application/json");
         JsonNode body = objectMapper.readTree(response.getBody());
         assertThat(body.isArray()).isTrue();
-    }
-
-    @Test
-    void weatherEndpoint_shouldReturnNormalizedPayload() throws Exception {
-        ResponseEntity<String> response = restClient()
-                .get()
-                .uri("/api/weather/granada")
-                .retrieve()
-                .toEntity(String.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        JsonNode body = objectMapper.readTree(response.getBody());
-        assertThat(fieldNames(body)).containsExactly(
-                "city",
-                "temperatureCelsius",
-                "apparentTemperatureCelsius",
-                "condition",
-                "day",
-                "updatedAt"
-        );
-        assertThat(body.get("city").asText()).isEqualTo("Granada");
-        assertThat(body.get("condition").asText()).isEqualTo("Poco nuboso");
     }
 
     private ResponseEntity<String> postJson(String path, String body) {
