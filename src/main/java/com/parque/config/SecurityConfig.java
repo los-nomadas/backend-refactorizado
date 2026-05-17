@@ -44,22 +44,13 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
-                .requestMatchers("/api/v1/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                .requestMatchers("/api/tickets/mobile/**", "/api/tickets/entry/**", "/api/weather/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/hotels/**", "/api/attractions/**", "/api/offers/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/users", "/api/bookings").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/hotels/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
                 .requestMatchers("/api/users/**").authenticated()
-                .requestMatchers("/api/bookings/**").authenticated()
                 .requestMatchers("/api/hotels/**").authenticated()
                 .requestMatchers("/api/drivers/**").authenticated()
                 .requestMatchers("/api/buses/**").authenticated()
-                .requestMatchers("/api/attractions/**").authenticated()
-                .requestMatchers("/api/employees/**").authenticated()
-                .requestMatchers("/api/offers/**").authenticated()
-                .requestMatchers("/api/shifts/**").authenticated()
-                .requestMatchers("/api/maintenance/**").authenticated()
-                .requestMatchers("/api/dashboard/**").authenticated()
                 .requestMatchers("/api/images/**").authenticated()
                 .anyRequest().denyAll()
             )
@@ -78,9 +69,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(List.of(
             "http://localhost:*",
-            "http://127.0.0.1:*",
-            "https://parque-atracciones.com",
-            "https://www.parque-atracciones.com"
+            "http://127.0.0.1:*"
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(List.of("*"));

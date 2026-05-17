@@ -22,7 +22,7 @@ class CorsConfigurationIT {
     void optionsRequest_shouldAllowLocalFrontendRunningOnAnyPort() {
         ResponseEntity<Void> response = restClient()
                 .method(HttpMethod.OPTIONS)
-                .uri("/api/weather/granada")
+                .uri("/api/hotels")
                 .header(HttpHeaders.ORIGIN, "http://127.0.0.1:5174")
                 .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "GET")
                 .retrieve()
