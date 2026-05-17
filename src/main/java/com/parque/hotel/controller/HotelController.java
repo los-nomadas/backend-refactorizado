@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/hotels")
-@Tag(name = "Hotels", description = "Gestión de hoteles del parque")
+@Tag(name = "Hotels", description = "Gestión de hoteles de la agencia")
 public class HotelController {
 
     private final HotelService hotelService;

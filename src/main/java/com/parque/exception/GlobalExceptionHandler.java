@@ -119,26 +119,11 @@ public class GlobalExceptionHandler {
         if (path != null && path.startsWith("/api/buses")) {
             return "Invalid bus data";
         }
-        if (path != null && path.startsWith("/api/attractions")) {
-            return "Invalid attraction data";
-        }
-        if (path != null && path.startsWith("/api/employees")) {
-            return "Invalid employee data";
-        }
         if (path != null && path.startsWith("/api/bookings")) {
             return "Invalid booking data";
         }
         if (path != null && path.startsWith("/api/auth")) {
             return "Invalid login data";
-        }
-        if (path != null && path.startsWith("/api/shifts")) {
-            return "Invalid request data";
-        }
-        if (path != null && path.startsWith("/api/maintenance")) {
-            return "Invalid request data";
-        }
-        if (path != null && path.startsWith("/api/offers")) {
-            return "Invalid offer data";
         }
         return "Invalid request data";
     }

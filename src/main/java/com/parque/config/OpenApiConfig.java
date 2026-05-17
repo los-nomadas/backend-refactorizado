@@ -17,16 +17,16 @@ import java.util.List;
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI parqueOpenApi() {
+    public OpenAPI nomadasOpenApi() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Parque de Atracciones API")
+                        .title("Nomadas Travel Agency API")
                         .version("1.0.0")
-                        .description("Backend API para el sistema de taquilla y administración del Parque de Atracciones. " +
-                                "Proporciona endpoints para gestión de usuarios, hoteles, atracciones, reservas y dashboard administrativo.")
+                        .description("Backend API para la agencia de viajes Nomadas. " +
+                                "Proporciona endpoints para gestión de usuarios, hoteles, conductores, autobuses, viajes, reservas y dashboard administrativo.")
                         .contact(new Contact()
-                                .name("Equipo de Desarrollo")
-                                .url("https://github.com/Grupo-3-Final-project"))
+                                .name("Equipo Nomadas")
+                                .url("https://github.com/los-nomadas"))
                         .license(new License()
                                 .name("MIT")
                                 .url("https://opensource.org/licenses/MIT")))

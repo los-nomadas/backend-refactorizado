@@ -2,8 +2,8 @@ package com.parque.auth.model;
 
 public enum InternalRole {
     ADMIN("Administrador del sistema"),
-    MANAGER("Gerente del parque"),
-    EMPLOYEE("Empleado del parque"),
+    MANAGER("Gerente de la agencia"),
+    EMPLOYEE("Empleado de la agencia"),
     USER("Usuario registrado");
 
     private final String description;
