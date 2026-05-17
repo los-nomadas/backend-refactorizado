@@ -35,3 +35,4 @@ build/
 .env
 backend-dev.out.log
 backend-dev.err.log
+*.log
