@@ -119,6 +119,9 @@ public class GlobalExceptionHandler {
         if (path != null && path.startsWith("/api/buses")) {
             return "Invalid bus data";
         }
+        if (path != null && path.startsWith("/api/trips")) {
+            return "Invalid trip data";
+        }
         if (path != null && path.startsWith("/api/bookings")) {
             return "Invalid booking data";
         }
