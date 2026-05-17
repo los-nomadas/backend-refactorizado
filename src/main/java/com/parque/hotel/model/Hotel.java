@@ -8,10 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
-
-import com.parque.booking.model.Booking;
-import com.parque.offer.model.Offer;
 
 @Entity
 @Table(name = "hotels")
@@ -60,10 +56,4 @@ public class Hotel {
 
     @NotBlank
     private String imageUrl;
-
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
-    private List<Booking> bookings;
-
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
-    private List<Offer> offers;
 }
