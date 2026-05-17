@@ -1,12 +1,12 @@
 services:
   mysql:
     image: mysql:8.4
-    container_name: parque-mysql
+    container_name: nomadas-mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: parque_atracciones
-      MYSQL_USER: parque_user
-      MYSQL_PASSWORD: parque_password
+      MYSQL_DATABASE: nomadas_travel
+      MYSQL_USER: nomadas_user
+      MYSQL_PASSWORD: nomadas_password
       MYSQL_ROOT_PASSWORD: root_password
     ports:
       - "3306:3306"
