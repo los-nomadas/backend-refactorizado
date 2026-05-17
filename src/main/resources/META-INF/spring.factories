@@ -1,2 +1,2 @@
 org.springframework.boot.sql.init.dependency.DatabaseInitializerDetector=\
-com.parque.config.FlywayDatabaseInitializerDetector
+com.nomadas.config.FlywayDatabaseInitializerDetector
