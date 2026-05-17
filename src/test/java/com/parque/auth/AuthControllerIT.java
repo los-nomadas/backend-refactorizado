@@ -3,7 +3,6 @@ package com.parque.auth;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.parque.auth.repository.InternalCredentialRepository;
-import com.parque.dashboard.repository.BookingDashboardRepository;
 import com.parque.testconfig.JacksonTestConfig;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.parque.testsupport.InternalAuthSupport;
@@ -39,12 +38,8 @@ class AuthControllerIT {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private BookingDashboardRepository bookingDashboardRepository;
-
     @BeforeEach
     void setUp() {
-        bookingDashboardRepository.deleteAll();
         internalCredentialRepository.deleteAll();
         InternalAuthSupport.ensureAdminCredential(internalCredentialRepository, passwordEncoder);
     }
@@ -66,7 +61,7 @@ class AuthControllerIT {
         assertThat(json.get("type").asText()).isEqualTo("Bearer");
         assertThat(json.get("credentialId").asLong()).isPositive();
         assertThat(json.get("username").asText()).isEqualTo("admin");
-        assertThat(json.get("email").asText()).isEqualTo("admin@parque.local");
+        assertThat(json.get("email").asText()).isEqualTo("admin@nomadas.local");
         assertThat(json.get("role").asText()).isEqualTo("ADMIN");
         assertThat(json.get("expiresAt").asText()).isNotBlank();
     }
@@ -115,7 +110,7 @@ class AuthControllerIT {
     void protectedRoute_shouldReturn401_whenTokenIsMissing() throws Exception {
         ResponseEntity<String> response = restClient()
                 .get()
-                .uri("/api/dashboard/current-year-revenue")
+                .uri("/api/users")
                 .retrieve()
                 .toEntity(String.class);
 

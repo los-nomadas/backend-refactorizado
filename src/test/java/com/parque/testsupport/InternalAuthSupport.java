@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public final class InternalAuthSupport {
 
     public static final String ADMIN_USERNAME = "admin";
-    public static final String ADMIN_EMAIL = "admin@parque.local";
+    public static final String ADMIN_EMAIL = "admin@nomadas.local";
     public static final String ADMIN_PASSWORD = "admin12345";
 
     private InternalAuthSupport() {
