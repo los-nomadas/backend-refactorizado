@@ -12,6 +12,8 @@ public interface BookingService {
 
     List<BookingResponse> getByUserId(Long userId);
 
+    List<BookingResponse> getMyBookings(Long credentialId);
+
     BookingResponse create(BookingCreateRequest request);
 
     void delete(Long id);
