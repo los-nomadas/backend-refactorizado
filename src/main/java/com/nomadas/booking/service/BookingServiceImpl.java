@@ -11,6 +11,8 @@ import com.nomadas.booking.service.notification.BookingNotificationService;
 import com.nomadas.booking.service.pricing.AgeBracket;
 import com.nomadas.booking.service.pricing.BookingPricingPolicy;
 import com.nomadas.booking.service.pricing.BookingPricingPolicy.PricingResult;
+import com.nomadas.auth.repository.InternalCredentialRepository;
+import com.nomadas.entity.InternalCredential;
 import com.nomadas.exception.ConflictException;
 import com.nomadas.exception.ResourceNotFoundException;
 import com.nomadas.hotel.model.Hotel;
@@ -33,6 +35,7 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepository bookingRepository;
     private final UserRepository userRepository;
     private final TripRepository tripRepository;
+    private final InternalCredentialRepository credentialRepository;
     private final BookingPricingPolicy pricingPolicy;
     private final BookingNotificationService notificationService;
 
@@ -40,12 +43,14 @@ public class BookingServiceImpl implements BookingService {
             BookingRepository bookingRepository,
             UserRepository userRepository,
             TripRepository tripRepository,
+            InternalCredentialRepository credentialRepository,
             BookingPricingPolicy pricingPolicy,
             BookingNotificationService notificationService
     ) {
         this.bookingRepository = bookingRepository;
         this.userRepository = userRepository;
         this.tripRepository = tripRepository;
+        this.credentialRepository = credentialRepository;
         this.pricingPolicy = pricingPolicy;
         this.notificationService = notificationService;
     }
@@ -66,6 +71,18 @@ public class BookingServiceImpl implements BookingService {
     @Transactional(readOnly = true)
     public List<BookingResponse> getByUserId(Long userId) {
         return bookingRepository.findByUserId(userId).stream().map(this::toResponse).toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<BookingResponse> getMyBookings(Long credentialId) {
+        InternalCredential credential = credentialRepository.findById(credentialId)
+                .orElseThrow(() -> new ResourceNotFoundException("Credential not found"));
+        User user = credential.getUser();
+        if (user == null) {
+            throw new ResourceNotFoundException("No customer linked to this account");
+        }
+        return bookingRepository.findByUserId(user.getId()).stream().map(this::toResponse).toList();
     }
 
     @Override

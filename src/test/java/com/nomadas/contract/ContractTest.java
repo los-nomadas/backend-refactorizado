@@ -93,11 +93,12 @@ class ContractTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         JsonNode body = objectMapper.readTree(response.getBody());
-        assertThat(fieldNames(body)).containsExactly("token", "type", "credentialId", "username", "email", "role", "expiresAt");
+        assertThat(fieldNames(body)).containsExactly("token", "type", "credentialId", "userId", "username", "email", "role", "expiresAt");
         assertThat(body.get("token").asText()).isNotBlank();
         assertThat(body.get("type").asText()).isEqualTo("Bearer");
         assertThat(body.get("username").asText()).isEqualTo("admin");
         assertThat(body.get("role").asText()).isEqualTo("ADMIN");
+        assertThat(body.get("userId").isNull()).isTrue();
     }
 
     @Test

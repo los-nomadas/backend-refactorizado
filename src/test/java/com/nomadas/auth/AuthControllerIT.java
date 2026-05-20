@@ -3,9 +3,14 @@ package com.nomadas.auth;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nomadas.auth.repository.InternalCredentialRepository;
+import com.nomadas.entity.InternalCredential;
 import com.nomadas.testconfig.JacksonTestConfig;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import com.nomadas.testsupport.DomainFixtures;
 import com.nomadas.testsupport.InternalAuthSupport;
+import com.nomadas.user.model.User;
+import com.nomadas.user.repository.UserRepository;
+import com.nomadas.user.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +43,16 @@ class AuthControllerIT {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
+
     @BeforeEach
     void setUp() {
         internalCredentialRepository.deleteAll();
+        userRepository.deleteAll();
         InternalAuthSupport.ensureAdminCredential(internalCredentialRepository, passwordEncoder);
     }
 
@@ -64,6 +76,31 @@ class AuthControllerIT {
         assertThat(json.get("email").asText()).isEqualTo("admin@nomadas.local");
         assertThat(json.get("role").asText()).isEqualTo("ADMIN");
         assertThat(json.get("expiresAt").asText()).isNotBlank();
+        assertThat(json.get("userId").isNull()).isTrue();
+    }
+
+    @Test
+    void postLogin_shouldReturnLinkedUserId_whenCredentialHasLinkedUser() throws Exception {
+        User customer = userRepository.findById(
+                DomainFixtures.user(userService, "12345678A", "carla@example.com").id()
+        ).orElseThrow();
+        InternalCredential admin = internalCredentialRepository
+                .findByUsername(InternalAuthSupport.ADMIN_USERNAME).orElseThrow();
+        admin.setUser(customer);
+        internalCredentialRepository.save(admin);
+
+        String body = """
+                {
+                  "username": "admin",
+                  "password": "admin12345"
+                }
+                """;
+
+        ResponseEntity<String> response = postJson("/api/auth/login", body);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        JsonNode json = objectMapper.readTree(response.getBody());
+        assertThat(json.get("userId").asLong()).isEqualTo(customer.getId());
     }
 
     @Test

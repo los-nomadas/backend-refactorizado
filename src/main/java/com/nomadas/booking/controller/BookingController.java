@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,12 @@ public class BookingController {
             return bookingService.getByUserId(userId);
         }
         return bookingService.getAll();
+    }
+
+    @GetMapping("/my")
+    public List<BookingResponse> getMyBookings(Authentication authentication) {
+        Long credentialId = (Long) authentication.getDetails();
+        return bookingService.getMyBookings(credentialId);
     }
 
     @GetMapping("/{id}")
