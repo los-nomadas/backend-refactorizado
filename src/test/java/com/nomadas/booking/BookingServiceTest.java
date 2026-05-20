@@ -4,17 +4,21 @@ import com.nomadas.booking.dto.BookingCreateRequest;
 import com.nomadas.booking.dto.BookingResponse;
 import com.nomadas.booking.dto.CompanionRequest;
 import com.nomadas.booking.model.GroupType;
+import com.nomadas.auth.model.InternalRole;
+import com.nomadas.auth.repository.InternalCredentialRepository;
 import com.nomadas.booking.repository.BookingRepository;
 import com.nomadas.booking.service.BookingService;
 import com.nomadas.bus.repository.BusRepository;
 import com.nomadas.bus.service.BusService;
 import com.nomadas.driver.repository.DriverRepository;
 import com.nomadas.driver.service.DriverService;
+import com.nomadas.entity.InternalCredential;
 import com.nomadas.exception.ConflictException;
 import com.nomadas.exception.ResourceNotFoundException;
 import com.nomadas.hotel.repository.HotelRepository;
 import com.nomadas.hotel.service.HotelService;
 import com.nomadas.testsupport.DomainFixtures;
+import com.nomadas.user.model.User;
 import com.nomadas.trip.dto.TripCreateRequest;
 import com.nomadas.trip.dto.TripResponse;
 import com.nomadas.trip.model.BoardType;
@@ -63,6 +67,8 @@ class BookingServiceTest {
     private HotelRepository hotelRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private InternalCredentialRepository credentialRepository;
 
     private Long userId;
     private Long hotelId;
@@ -70,6 +76,7 @@ class BookingServiceTest {
 
     @BeforeEach
     void setUp() {
+        credentialRepository.deleteAll();
         bookingRepository.deleteAll();
         tripRepository.deleteAll();
         busRepository.deleteAll();
@@ -212,6 +219,50 @@ class BookingServiceTest {
 
         assertThat(tripService.getById(tripId).availableSeats()).isEqualTo(30);
         assertThat(hotelService.getById(hotelId).availablePlaces()).isEqualTo(100);
+    }
+
+    @Test
+    void getMyBookings_returnsBookingsOfLinkedUser() {
+        bookingService.create(new BookingCreateRequest(
+                userId,
+                tripId,
+                BoardType.FULL_BOARD,
+                GroupType.NONE,
+                List.of(new CompanionRequest("Carla", "Vega", LocalDate.of(1985, 3, 10)))
+        ));
+        User customer = userRepository.findById(userId).orElseThrow();
+        Long credentialId = linkedCredential("operator", "operator@example.com", customer);
+
+        List<BookingResponse> myBookings = bookingService.getMyBookings(credentialId);
+
+        assertThat(myBookings).hasSize(1);
+        assertThat(myBookings.get(0).userId()).isEqualTo(userId);
+    }
+
+    @Test
+    void getMyBookings_throwsNotFound_whenCredentialHasNoLinkedUser() {
+        Long credentialId = linkedCredential("orphan", "orphan@example.com", null);
+
+        assertThatThrownBy(() -> bookingService.getMyBookings(credentialId))
+                .isInstanceOf(ResourceNotFoundException.class)
+                .hasMessageContaining("No customer linked");
+    }
+
+    @Test
+    void getMyBookings_throwsNotFound_whenCredentialDoesNotExist() {
+        assertThatThrownBy(() -> bookingService.getMyBookings(999L))
+                .isInstanceOf(ResourceNotFoundException.class);
+    }
+
+    private Long linkedCredential(String username, String email, User user) {
+        return credentialRepository.save(InternalCredential.builder()
+                .username(username)
+                .email(email)
+                .passwordHash("hash")
+                .role(InternalRole.USER)
+                .active(true)
+                .user(user)
+                .build()).getId();
     }
 
     private List<CompanionRequest> seniorCompanions(int count) {
