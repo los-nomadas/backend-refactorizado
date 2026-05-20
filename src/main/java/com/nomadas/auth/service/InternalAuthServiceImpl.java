@@ -49,9 +49,12 @@ public class InternalAuthServiceImpl implements InternalAuthService {
                 credential.getRole().name()
         );
 
+        Long userId = credential.getUser() != null ? credential.getUser().getId() : null;
+
         return LoginResponse.of(
                 token,
                 credential.getId(),
+                userId,
                 credential.getUsername(),
                 credential.getEmail(),
                 credential.getRole().name(),

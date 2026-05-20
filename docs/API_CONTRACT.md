@@ -64,12 +64,18 @@ Códigos esperados:
   "token": "<jwt>",
   "type": "Bearer",
   "credentialId": 1,
+  "userId": 5,
   "username": "admin",
   "email": "admin@nomadas.local",
   "role": "ADMIN",
   "expiresAt": "2026-05-23T10:30:00"
 }
 ```
+
+`userId` es el id del cliente (`User`) vinculado a la credencial, o
+`null` si la credencial no tiene ningún cliente asociado. No es el
+`credentialId`: son entidades distintas. El frontend lo necesita para
+crear reservas a nombre del cliente.
 
 `401 Unauthorized` con envelope estándar si las credenciales no son válidas.
 
