@@ -135,11 +135,11 @@ public class DemoDataConfig {
                 Hotel.builder().name("Hôtel Plaza Athénée").description("Hotel de lujo en el corazón de París, frente a la Torre Eiffel. Elegancia francesa en su máxima expresión con habitaciones de diseño exclusivo.")
                         .location("Avenue Montaigne, París, Francia").totalRooms(150).availableRooms(150).totalPlaces(300).availablePlaces(300)
                         .halfBoardPrice(new BigDecimal("180.00")).fullBoardPrice(new BigDecimal("240.00"))
-                        .imageUrl("https://images.unsplash.com/photo-1502602449-6312bc39c3d8?auto=format&fit=crop&w=1200&q=80").build(),
+                        .imageUrl("https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80").build(),
                 Hotel.builder().name("Hotel Eden Roma").description("Hotel clásico con vistas al Coliseo. Arquitectura histórica italiana con todas las comodidades modernas a pasos de los monumentos más emblemáticos de Roma.")
                         .location("Via Nazionale, Roma, Italia").totalRooms(120).availableRooms(120).totalPlaces(240).availablePlaces(240)
                         .halfBoardPrice(new BigDecimal("130.00")).fullBoardPrice(new BigDecimal("175.00"))
-                        .imageUrl("https://images.unsplash.com/photo-1552832230-c0197DD311b5?auto=format&fit=crop&w=1200&q=80").build(),
+                        .imageUrl("https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&q=80").build(),
                 Hotel.builder().name("Park Hyatt Tokyo").description("Hotel de lujo en Shinjuku con impresionantes vistas al Monte Fuji y al skyline de Tokio. Diseño contemporáneo japonés con spa y restaurantes de primera.")
                         .location("Shinjuku, Tokio, Japón").totalRooms(180).availableRooms(180).totalPlaces(360).availablePlaces(360)
                         .halfBoardPrice(new BigDecimal("200.00")).fullBoardPrice(new BigDecimal("260.00"))
@@ -180,14 +180,14 @@ public class DemoDataConfig {
                         .hotel(hotels.get(0)).bus(buses.get(0)).boardType(BoardType.FULL_BOARD)
                         .priceAdult(new BigDecimal("1299.00")).priceChild(new BigDecimal("799.00")).priceSenior(new BigDecimal("1099.00"))
                         .totalSeats(50).availableSeats(50).isOffer(true).status(TripStatus.AVAILABLE)
-                        .imageUrl("https://images.unsplash.com/photo-1502602449-6312bc39c3d8?auto=format&fit=crop&w=1200&q=80").build(),
+                        .imageUrl("https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Roma").description("La Ciudad Eterna te espera: el Coliseo, el Vaticano y la Fontana di Trevi. Pasta fresca, gelato y arte renacentista en cada esquina. Visitas guiadas incluidas.")
                         .departureDate(LocalDate.of(2026, 6, 15)).returnDate(LocalDate.of(2026, 6, 22))
                         .hotel(hotels.get(1)).bus(buses.get(1)).boardType(BoardType.HALF_BOARD)
                         .priceAdult(new BigDecimal("999.00")).priceChild(new BigDecimal("599.00")).priceSenior(new BigDecimal("849.00"))
                         .totalSeats(50).availableSeats(50).isOffer(false).status(TripStatus.AVAILABLE)
-                        .imageUrl("https://images.unsplash.com/photo-1552832230-c0197DD311b5?auto=format&fit=crop&w=1200&q=80").build(),
+                        .imageUrl("https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Tokio").description("Sumérgete en el contraste entre tradición y modernidad de la capital japonesa. Templos milenarios, tecnología punta, sushi auténtico y la magia del distrito Shibuya.")
                         .departureDate(LocalDate.of(2026, 8, 5)).returnDate(LocalDate.of(2026, 8, 17))
