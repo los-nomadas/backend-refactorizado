@@ -178,70 +178,70 @@ public class DemoDataConfig {
                 Trip.builder().destination("París").description("Descubre la Ciudad de la Luz: la Torre Eiffel, el Louvre y los bulevares más románticos del mundo. Incluye visitas guiadas al Museo de Orsay y crucero nocturno por el Sena.")
                         .departureDate(LocalDate.of(2026, 7, 10)).returnDate(LocalDate.of(2026, 7, 17))
                         .hotel(hotels.get(0)).bus(buses.get(0)).boardType(BoardType.FULL_BOARD)
-                        .priceAdult(new BigDecimal("1890.00")).priceChild(new BigDecimal("1250.00")).priceSenior(new BigDecimal("1680.00"))
+                        .priceAdult(new BigDecimal("2490.00")).priceChild(new BigDecimal("1640.00")).priceSenior(new BigDecimal("2210.00"))
                         .totalSeats(50).availableSeats(50).isOffer(true).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Roma").description("La Ciudad Eterna te espera: el Coliseo, el Vaticano y la Fontana di Trevi. Pasta fresca, gelato y arte renacentista en cada esquina. Visitas guiadas incluidas.")
                         .departureDate(LocalDate.of(2026, 6, 15)).returnDate(LocalDate.of(2026, 6, 22))
                         .hotel(hotels.get(1)).bus(buses.get(1)).boardType(BoardType.HALF_BOARD)
-                        .priceAdult(new BigDecimal("1490.00")).priceChild(new BigDecimal("990.00")).priceSenior(new BigDecimal("1320.00"))
+                        .priceAdult(new BigDecimal("1690.00")).priceChild(new BigDecimal("1110.00")).priceSenior(new BigDecimal("1500.00"))
                         .totalSeats(50).availableSeats(50).isOffer(false).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Tokio").description("Sumérgete en el contraste entre tradición y modernidad de la capital japonesa. Templos milenarios, tecnología punta, sushi auténtico y la magia del distrito Shibuya.")
                         .departureDate(LocalDate.of(2026, 8, 5)).returnDate(LocalDate.of(2026, 8, 17))
                         .hotel(hotels.get(2)).bus(buses.get(2)).boardType(BoardType.FULL_BOARD)
-                        .priceAdult(new BigDecimal("3190.00")).priceChild(new BigDecimal("1990.00")).priceSenior(new BigDecimal("2790.00"))
+                        .priceAdult(new BigDecimal("3690.00")).priceChild(new BigDecimal("2430.00")).priceSenior(new BigDecimal("3280.00"))
                         .totalSeats(50).availableSeats(50).isOffer(false).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Nueva York").description("La Gran Manzana en todo su esplendor: Times Square, Central Park, la Estatua de la Libertad y los mejores musicales de Broadway. La ciudad que nunca duerme te espera.")
                         .departureDate(LocalDate.of(2026, 9, 12)).returnDate(LocalDate.of(2026, 9, 21))
                         .hotel(hotels.get(3)).bus(buses.get(3)).boardType(BoardType.FULL_BOARD)
-                        .priceAdult(new BigDecimal("2590.00")).priceChild(new BigDecimal("1690.00")).priceSenior(new BigDecimal("2290.00"))
+                        .priceAdult(new BigDecimal("3190.00")).priceChild(new BigDecimal("2100.00")).priceSenior(new BigDecimal("2840.00"))
                         .totalSeats(50).availableSeats(50).isOffer(true).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1546436836-07a91091f160?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Santorini").description("Las icónicas cúpulas azules de Oia y los atardeceres más espectaculares del Mediterráneo. Vino local, gastronomía griega y playas de arena volcánica negra.")
                         .departureDate(LocalDate.of(2026, 7, 20)).returnDate(LocalDate.of(2026, 7, 27))
                         .hotel(hotels.get(4)).bus(buses.get(4)).boardType(BoardType.HALF_BOARD)
-                        .priceAdult(new BigDecimal("1790.00")).priceChild(new BigDecimal("1150.00")).priceSenior(new BigDecimal("1590.00"))
+                        .priceAdult(new BigDecimal("2190.00")).priceChild(new BigDecimal("1440.00")).priceSenior(new BigDecimal("1950.00"))
                         .totalSeats(50).availableSeats(50).isOffer(false).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Londres").description("La capital británica con el Big Ben, el Palacio de Buckingham y los mejores museos del mundo, todos gratuitos. Afternoon tea, pubs históricos y teatro en el West End.")
                         .departureDate(LocalDate.of(2026, 6, 5)).returnDate(LocalDate.of(2026, 6, 9))
                         .hotel(hotels.get(5)).bus(buses.get(5)).boardType(BoardType.HALF_BOARD)
-                        .priceAdult(new BigDecimal("1390.00")).priceChild(new BigDecimal("950.00")).priceSenior(new BigDecimal("1250.00"))
+                        .priceAdult(new BigDecimal("1790.00")).priceChild(new BigDecimal("1180.00")).priceSenior(new BigDecimal("1590.00"))
                         .totalSeats(50).availableSeats(50).isOffer(false).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Dubái").description("El futuro hecho realidad: el Burj Khalifa, el Mall of the Emirates y el desierto en camello. Shopping de lujo, playas privadas y la arquitectura más audaz del planeta.")
                         .departureDate(LocalDate.of(2026, 10, 15)).returnDate(LocalDate.of(2026, 10, 23))
                         .hotel(hotels.get(6)).bus(buses.get(6)).boardType(BoardType.FULL_BOARD)
-                        .priceAdult(new BigDecimal("2990.00")).priceChild(new BigDecimal("1890.00")).priceSenior(new BigDecimal("2650.00"))
+                        .priceAdult(new BigDecimal("3990.00")).priceChild(new BigDecimal("2620.00")).priceSenior(new BigDecimal("3550.00"))
                         .totalSeats(50).availableSeats(50).isOffer(true).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Bali").description("La Isla de los Dioses: terrazas de arroz esmeralda, templos hindúes entre la selva y playas de arena blanca. Yoga, spa balinés y la hospitalidad más cálida de Asia.")
                         .departureDate(LocalDate.of(2026, 8, 20)).returnDate(LocalDate.of(2026, 9, 1))
                         .hotel(hotels.get(7)).bus(buses.get(7)).boardType(BoardType.HALF_BOARD)
-                        .priceAdult(new BigDecimal("2790.00")).priceChild(new BigDecimal("1750.00")).priceSenior(new BigDecimal("2480.00"))
+                        .priceAdult(new BigDecimal("2890.00")).priceChild(new BigDecimal("1900.00")).priceSenior(new BigDecimal("2570.00"))
                         .totalSeats(50).availableSeats(50).isOffer(false).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Praga").description("La Ciudad Dorada del centro de Europa: el Castillo de Praga, el Puente de Carlos y la Plaza de la Ciudad Vieja. Cerveza artesanal, gastronomía checa y arquitectura barroca incomparable.")
                         .departureDate(LocalDate.of(2026, 6, 25)).returnDate(LocalDate.of(2026, 6, 30))
                         .hotel(hotels.get(8)).bus(buses.get(8)).boardType(BoardType.HALF_BOARD)
-                        .priceAdult(new BigDecimal("1190.00")).priceChild(new BigDecimal("790.00")).priceSenior(new BigDecimal("1050.00"))
+                        .priceAdult(new BigDecimal("1490.00")).priceChild(new BigDecimal("980.00")).priceSenior(new BigDecimal("1320.00"))
                         .totalSeats(50).availableSeats(50).isOffer(false).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1592906209472-a36b1f3782ef?auto=format&fit=crop&w=1200&q=80").build(),
 
                 Trip.builder().destination("Maldivas").description("El paraíso terrenal: villas sobre el agua turquesa del Índico, arrecifes de coral con tortugas marinas y tiburones ballena. La luna de miel o el descanso absoluto que mereces.")
                         .departureDate(LocalDate.of(2026, 11, 1)).returnDate(LocalDate.of(2026, 11, 10))
                         .hotel(hotels.get(9)).bus(buses.get(9)).boardType(BoardType.FULL_BOARD)
-                        .priceAdult(new BigDecimal("3990.00")).priceChild(new BigDecimal("2490.00")).priceSenior(new BigDecimal("3550.00"))
+                        .priceAdult(new BigDecimal("4790.00")).priceChild(new BigDecimal("3150.00")).priceSenior(new BigDecimal("4260.00"))
                         .totalSeats(50).availableSeats(50).isOffer(false).status(TripStatus.AVAILABLE)
                         .imageUrl("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80").build()
         ));
